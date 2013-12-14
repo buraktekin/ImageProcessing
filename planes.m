@@ -16,9 +16,14 @@ Image = imread(img_path);
 information = imfinfo(img_path);
 bitdepth = information.BitDepth;
 
+figure(1)
 for i = 1:bitdepth
     %   generate planes...
-    B = bitget(Image, i); figure, imshow(logical(B), [], 'Border', 'tight');
+    subplot(2,4,i);
+    B = bitget(Image, i); 
+    h = imshow(logical(B), 'InitialMag',100, 'Border','tight');
+    title(num2str(i));
+    set(h);
 end
 %   display the original one.
 imshow(Image, 'Border', 'tight');
